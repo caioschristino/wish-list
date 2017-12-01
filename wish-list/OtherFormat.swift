@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+struct OtherFormat {
+    let url: String
+    let height: Int
+    let width: Int
+}
+
+extension OtherFormat: JSONDecodable {
+    init?(dictionary: JSONDictionary) {
+        guard let url = dictionary["url"] as? String,
+            let height = dictionary["height"] as? Int,
+            let width = dictionary["width"] as? Int else {
+                return nil
+        }
+        
+        self.url = url
+        self.height = height
+        self.width = width
+    }
+}

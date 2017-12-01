@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+struct UserRating {
+    let comments: Int
+    let rating: Int
+}
+
+extension UserRating: JSONDecodable {
+    init?(dictionary: JSONDictionary) {
+        guard let comments = dictionary["comments"] as? Int,
+            let rating = dictionary["rating"] as? Int else {
+                return nil
+        }
+        
+        self.rating = rating
+        self.comments = comments
+    }
+}
